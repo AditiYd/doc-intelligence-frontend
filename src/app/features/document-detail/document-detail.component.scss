@@ -1,0 +1,64 @@
+.spinner-row {
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+.status-chip {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+
+  &.status-DONE { background: #e8f5e9; color: #2e7d32; }
+  &.status-PROCESSING { background: #fff3e0; color: #e65100; }
+  &.status-FAILED { background: #ffebee; color: #c62828; }
+}
+
+.polling-hint {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.fields-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.value {
+  font-size: 15px;
+}
+
+.summary-section {
+  margin: 16px 0;
+  p { margin: 6px 0 0; line-height: 1.6; }
+}
+
+.line-items-title {
+  margin: 16px 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.failed-msg {
+  color: #c62828;
+  margin: 16px 0;
+}

@@ -1,0 +1,58 @@
+@if (loading) {
+  <div class="spinner-row">
+    <mat-spinner diameter="48"></mat-spinner>
+  </div>
+}
+
+@if (!loading && stats) {
+  <div class="summary-tiles">
+    <mat-card class="tile">
+      <mat-card-content>
+        <div class="tile-value">{{ stats.totalDocuments }}</div>
+        <div class="tile-label">Total Documents</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="tile">
+      <mat-card-content>
+        <div class="tile-value">{{ stats.totalSpend | currency: 'USD' }}</div>
+        <div class="tile-label">Total Spend</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="tile">
+      <mat-card-content>
+        <div class="tile-value">{{ (stats.byType | keyvalue).length }}</div>
+        <div class="tile-label">Document Types</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="charts-grid">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Documents by Type</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <canvas baseChart
+          [data]="barChartData"
+          [options]="barChartOptions"
+          type="bar">
+        </canvas>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Type Distribution</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <canvas baseChart
+          [data]="doughnutChartData"
+          [options]="doughnutChartOptions"
+          type="doughnut">
+        </canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+}

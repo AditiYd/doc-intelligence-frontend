@@ -1,0 +1,26 @@
+.upload-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.upload-card {
+  width: 100%;
+  max-width: 520px;
+}
+
+.file-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.file-name {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 300px;
+}

@@ -1,0 +1,50 @@
+mat-card-header {
+  display: flex;
+  align-items: center;
+}
+
+.header-spacer {
+  flex: 1 1 auto;
+}
+
+.spinner-row {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.clickable-row {
+  cursor: pointer;
+  &:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+}
+
+.status-chip {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+
+  &.status-DONE {
+    background: #e8f5e9;
+    color: #2e7d32;
+  }
+
+  &.status-PROCESSING {
+    background: #fff3e0;
+    color: #e65100;
+  }
+
+  &.status-FAILED {
+    background: #ffebee;
+    color: #c62828;
+  }
+}
+
+.empty-row {
+  text-align: center;
+  padding: 40px;
+  color: rgba(0, 0, 0, 0.4);
+}

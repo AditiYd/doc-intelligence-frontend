@@ -1,0 +1,68 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Documents</mat-card-title>
+    <span class="header-spacer"></span>
+    <button mat-icon-button (click)="load()" matTooltip="Refresh">
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </mat-card-header>
+
+  <mat-card-content>
+    @if (loading) {
+      <div class="spinner-row">
+        <mat-spinner diameter="40"></mat-spinner>
+      </div>
+    } @else {
+      <mat-table [dataSource]="documents">
+
+        <ng-container matColumnDef="originalFileName">
+          <mat-header-cell *matHeaderCellDef>File Name</mat-header-cell>
+          <mat-cell *matCellDef="let doc">{{ doc.originalFileName }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="documentType">
+          <mat-header-cell *matHeaderCellDef>Type</mat-header-cell>
+          <mat-cell *matCellDef="let doc">{{ doc.documentType ?? '—' }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="vendor">
+          <mat-header-cell *matHeaderCellDef>Vendor</mat-header-cell>
+          <mat-cell *matCellDef="let doc">{{ doc.vendor ?? '—' }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="totalAmount">
+          <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
+          <mat-cell *matCellDef="let doc">
+            {{ doc.totalAmount != null ? (doc.totalAmount | currency: (doc.currency ?? 'USD')) : '—' }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+          <mat-cell *matCellDef="let doc">
+            <span [class]="'status-chip status-' + doc.status">{{ doc.status }}</span>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="uploadedAt">
+          <mat-header-cell *matHeaderCellDef>Uploaded</mat-header-cell>
+          <mat-cell *matCellDef="let doc">{{ doc.uploadedAt | date: 'dd MMM yyyy, HH:mm' }}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: displayedColumns;"
+          class="clickable-row"
+          (click)="openDetail(row.id)">
+        </mat-row>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell empty-row" [attr.colspan]="displayedColumns.length">
+            No documents uploaded yet.
+          </td>
+        </tr>
+
+      </mat-table>
+    }
+  </mat-card-content>
+</mat-card>

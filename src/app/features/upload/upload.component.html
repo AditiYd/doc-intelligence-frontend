@@ -1,0 +1,38 @@
+<div class="upload-wrapper">
+  <mat-card class="upload-card">
+    <mat-card-header>
+      <mat-card-title>Upload Document</mat-card-title>
+      <mat-card-subtitle>Supported formats: PDF, TXT (max 10 MB)</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="file-row">
+        <input
+          type="file"
+          #fileInput
+          accept=".pdf,.txt"
+          (change)="onFileSelected($event)"
+          hidden />
+        <button mat-stroked-button (click)="fileInput.click()">
+          <mat-icon>attach_file</mat-icon>
+          Choose File
+        </button>
+        <span class="file-name">{{ selectedFile ? selectedFile.name : 'No file selected' }}</span>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!selectedFile || uploading"
+        (click)="upload()">
+        {{ uploading ? 'Uploading…' : 'Upload' }}
+      </button>
+    </mat-card-actions>
+
+    @if (uploading) {
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    }
+  </mat-card>
+</div>
